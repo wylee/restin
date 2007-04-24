@@ -15,13 +15,19 @@ def make_map(global_conf={}, app_conf={}):
     map = Mapper(directory=os.path.join(root_path, 'controllers'))
     map.connect('error/:action/:id', controller='error')
 
-    map.connect('', controller='applications', action='index',
-                _member_name='application', _collection_name='applications')
-
     map.resource('application', 'applications')
 
-    data_route = 'applications/:application_id/:controller/:entity_name'
-    resource(map, data_route)
+    app_resource = dict(member_name='application',
+                        collection_name='applications')
+
+    map.resource('entity', 'entities', parent_resource=app_resource,
+                 collection=dict(model_index='GET'))
+
+    base_route = 'applications/:application_id/:controller/:entity_name'
+    resource(map, base_route)
+
+    map.connect('', controller='applications', action='index',
+                _member_name='application', _collection_name='applications')
 
     map.connect('*url', controller='template', action='view')
     return map
@@ -33,7 +39,7 @@ def resource(map, base_route):
         The Routes ``Mapper`` object
 
     ``base_route``
-        The route (string) up to and not including the :id, :action, and
+        The route (string) up to but not including the :id, :action, and
         :format
 
         For example::
