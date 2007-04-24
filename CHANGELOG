@@ -5,4 +5,6 @@ SVN
   * Added intro and quick start to Google Code project home page
   * Allow setting of member name in data controller with `m` query parameter
   * Added default route => /applications
-
+* 2007-04-24:
+  * Added initial support for navigating between applications, models, and
+    data
