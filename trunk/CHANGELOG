@@ -1,0 +1,7 @@
+SVN
+* 2007-04-20: Created project and uploaded to Google Code
+* 2007-04-23:
+  * Got minimal working version running
+  * Added intro and quick start to Google Code project home page
+  * Allow setting of member name in data controller with `m` query parameter
+
