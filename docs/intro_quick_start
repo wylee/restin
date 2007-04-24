@@ -1,0 +1,55 @@
+RESTful + Admin = Restin
+
+Restin is an admin application for Pylons. The project is brand new (four days old as of 4/23/2007) and is a bit rough around the edges.
+
+
+== (Very) Quick Start ==
+
+
+=== Install ===
+
+{{{
+svn checkout http://restin.googlecode.com/svn/trunk/ Restin
+cd Restin
+python setup.py develop
+}}}
+
+
+=== Set Up ===
+
+By default, Restin uses SQLite. Change that first in development.ini if necessary, then run:
+
+{{{
+paster setup-app development.ini
+}}}
+
+
+=== Launch ===
+
+{{{
+paster serve --reload development.ini
+# This might work, too:
+./development.in
+}}}
+
+
+=== Poke Around ===
+
+First, go to http://localhost:5001/applications. Create an application entry containing metadata about an existing Pylons project. (If you don't have one, you can get super-meta and fill in the details for Restin itself.)
+
+Now, the navigation is pretty lacking, so once you've created an entry for your app, you'll have to type in the address bar before you can start administering your app's data:
+
+http://localhost:5001/applications/<app_package_name>/data/<collection_name_for_resource>
+
+Once you get there, there are links to navigate through the collection corresponding to <collection_name_for_resource>.
+
+Note: one thing that's broken-ish is, the names of model classes are assumed to be formed by just stripping a trailing 's' of the collection name. There's probably a better way to fix this, but for now you can send an `m` param to a data url to explicitly set the model class name:
+
+http://localhost:5001/applications/pyanimals/data/oxen?m=ox
+
+
+=== Future ===
+
+    * Fix the obviously broken stuff, like the things noted above. 
+    * Generate Pylons apps from application metadata
+
