@@ -10,6 +10,9 @@ def make_map(global_conf={}, app_conf={}):
     map = Mapper(directory=os.path.join(root_path, 'controllers'))
     map.connect('error/:action/:id', controller='error')
 
+    map.connect('', controller='applications', action='index',
+                _member_name='application', _collection_name='applications')
+
     map.resource('application', 'applications')
 
     GET_condition = dict(method=['GET'])
