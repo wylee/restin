@@ -17,17 +17,20 @@ def make_map(global_conf={}, app_conf={}):
 
     map.resource('application', 'applications')
 
+    _app_resource = dict(_member_name='application',
+                         _collection_name='applications')
     app_resource = dict(member_name='application',
                         collection_name='applications')
 
-    map.resource('entity', 'entities', parent_resource=app_resource,
-                 collection=dict(model_index='GET'))
+    map.connect('applications/:application_id/model', 
+                controller='model', action='index',
+                _member_name='model', _collection_name='model',
+                _parent_resource=app_resource)
 
     base_route = 'applications/:application_id/:controller/:entity_name'
     resource(map, base_route)
 
-    map.connect('', controller='applications', action='index',
-                _member_name='application', _collection_name='applications')
+    map.connect('', controller='applications', action='index', **_app_resource)
 
     map.connect('*url', controller='template', action='view')
     return map
