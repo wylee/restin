@@ -20,7 +20,7 @@ def make_map(global_conf={}, app_conf={}):
     PUT_condition = dict(method=['PUT'])
     DELETE_condition = dict(method=['DELETE'])
 
-    route = 'applications/:application_id/:controller/:collection_name'
+    route = 'applications/:application_id/:controller/:entity_name'
     
     kw = dict(action='create', conditions=POST_condition)
     map.connect(route, **kw)

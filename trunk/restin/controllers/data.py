@@ -10,15 +10,10 @@ class DataController(restler.BaseController(model)):
         app = self._get_entity_or_404(model.Application, application_id)
         self.model = model_registry[app.package_name]
 
-        c_name = route_info['collection_name']
-        m_name = request.params.get('m', None)
-        if m_name is None:
-            if c_name.endswith('s'):
-                m_name = c_name[:-1]
-            else:
-                m_name = c_name
+        entity_name = route_info['entity_name']
+        collection_name = '%ss' % entity_name
 
-        route.member_name = m_name
-        route.collection_name = c_name
+        route.member_name = entity_name
+        route.collection_name = collection_name
 
         super(DataController, self).__init__()
