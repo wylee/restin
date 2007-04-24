@@ -1,6 +1,6 @@
 RESTful + Admin = Restin
 
-Restin is an admin application for Pylons. The project is brand new (four days old as of 4/23/2007) and is a bit rough around the edges.
+Restin is an admin application for `ActiveMapper` and `Elixir` models. The project is brand new (four days old as of 4/23/2007) and is a bit rough around the edges. Though it is _built_ on Pylons, it should _work_ on any model defined using `ActiveMapper` or `Elixir` `Entity` classes.
 
 
 == (Very) Quick Start ==
@@ -43,7 +43,7 @@ http://localhost:5001/applications/<app_package_name>/data/<collection_name_for_
 
 Once you get there, there are links to navigate through the collection corresponding to <collection_name_for_resource>.
 
-Note: one thing that's broken-ish is, the names of model classes are assumed to be formed by just stripping a trailing 's' of the collection name. There's probably a better way to fix this, but for now you can send an `m` param to a data url to explicitly set the model class name:
+Note: one thing that's broken-ish is, the names of model classes are assumed to be formed by just stripping a trailing 's' off the collection name. There's probably a better way to fix this, but for now you can send an `m` param to a data url to explicitly set the model class name:
 
 http://localhost:5001/applications/pyanimals/data/oxen?m=ox
 
@@ -51,5 +51,8 @@ http://localhost:5001/applications/pyanimals/data/oxen?m=ox
 === Future ===
 
     * Fix the obviously broken stuff, like the things noted above. 
+    * Add authorization
+    * Deal with any potential Unicode issues
+    * Support model classes mapped in the 'normal' way (and maybe even `Table` objects) by generating ActiveMapper classes (is this possible/feasible?)
     * Generate Pylons apps from application metadata
 
